@@ -1,6 +1,11 @@
 
-float lat_data = 100;
-float long_data = 100;
+bool at_destination(){
+  if(distanceTo < 3.0){
+    Serial.println("Destination Reached, Enter new location");
+    return true;
+}return false;
+  
+}
 
 void update_delta(){
         distanceTo =
