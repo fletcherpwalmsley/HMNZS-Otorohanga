@@ -1,7 +1,20 @@
-/*********
-  Rui Santos
-  Complete project details at https://randomnerdtutorials.com  
-*********/
+/*
+ * HMNZS Controller Code for an ESP32 running Ardinuo
+ * Created by Fletcher Walmsley
+ * Project Started Jan, 2020
+ * File Created 13/
+ 
+    o
+o      ______/~/~/~/__           /((
+  o  // __            ====__    /_((
+ o  //  @))       ))))      ===/__((
+    ))           )))))))        __((
+    \\     \)     ))))    __===\ _((
+     \\_______________====      \_((
+                                 \((
+ */
+
+
 
 TaskHandle_t Task1;
 TaskHandle_t Task2;
@@ -12,20 +25,19 @@ TaskHandle_t Task2;
 
 
 
-
-
-
 //////////////////////////////////////////////////
 // Inculdes for the other code headers
 //////////////////////////////////////////////////
 
+#include "setup_decs.h"
+#include "gps.h"
+#include "communication.h"
 #include "core_0.h"
 #include "core_1.h"
 
 
 void setup() {
   Serial.begin(115200); 
-
 
   //create a task that will be executed in the Task1code() function, with priority 1 and executed on core 0
   xTaskCreatePinnedToCore(
