@@ -1,25 +1,25 @@
 void displaySensorOffsets(const adafruit_bno055_offsets_t &calibData)
 {
-    Serial.print("Accelerometer: ");
-    Serial.print(calibData.accel_offset_x); Serial.print(" ");
-    Serial.print(calibData.accel_offset_y); Serial.print(" ");
-    Serial.print(calibData.accel_offset_z); Serial.print(" ");
+    SerialBT.print("Accelerometer: ");
+    SerialBT.print(calibData.accel_offset_x); Serial.print(" ");
+    SerialBT.print(calibData.accel_offset_y); Serial.print(" ");
+    SerialBT.print(calibData.accel_offset_z); Serial.print(" ");
 
-    Serial.print("\nGyro: ");
-    Serial.print(calibData.gyro_offset_x); Serial.print(" ");
-    Serial.print(calibData.gyro_offset_y); Serial.print(" ");
-    Serial.print(calibData.gyro_offset_z); Serial.print(" ");
+    SerialBT.print("\nGyro: ");
+    SerialBT.print(calibData.gyro_offset_x); Serial.print(" ");
+    SerialBT.print(calibData.gyro_offset_y); Serial.print(" ");
+    SerialBT.print(calibData.gyro_offset_z); Serial.print(" ");
 
-    Serial.print("\nMag: ");
-    Serial.print(calibData.mag_offset_x); Serial.print(" ");
-    Serial.print(calibData.mag_offset_y); Serial.print(" ");
-    Serial.print(calibData.mag_offset_z); Serial.print(" ");
+    SerialBT.print("\nMag: ");
+    SerialBT.print(calibData.mag_offset_x); Serial.print(" ");
+    SerialBT.print(calibData.mag_offset_y); Serial.print(" ");
+    SerialBT.print(calibData.mag_offset_z); Serial.print(" ");
 
-    Serial.print("\nAccel Radius: ");
-    Serial.print(calibData.accel_radius);
+    SerialBT.print("\nAccel Radius: ");
+    SerialBT.print(calibData.accel_radius);
 
-    Serial.print("\nMag Radius: ");
-    Serial.print(calibData.mag_radius);
+    SerialBT.print("\nMag Radius: ");
+    SerialBT.print(calibData.mag_radius);
 }
 
 
@@ -36,32 +36,32 @@ void displayCalStatus(void)
     bno.getCalibration(&system, &gyro, &accel, &mag);
 
     /* The data should be ignored until the system calibration is > 0 */
-    Serial.print("\t");
+    SerialBT.print("\t");
     if (!system)
     {
-        Serial.print("! ");
+        SerialBT.print("! ");
     }
 
     /* Display the individual values */
-    Serial.print("Sys:");
-    Serial.print(system, DEC);
-    Serial.print(" G:");
-    Serial.print(gyro, DEC);
-    Serial.print(" A:");
-    Serial.print(accel, DEC);
-    Serial.print(" M:");
-    Serial.println(mag, DEC);
+    SerialBT.print("Sys:");
+    SerialBT.print(system, DEC);
+    SerialBT.print(" G:");
+    SerialBT.print(gyro, DEC);
+    SerialBT.print(" A:");
+    SerialBT.print(accel, DEC);
+    SerialBT.print(" M:");
+    SerialBT.println(mag, DEC);
 }
 
 void compass_setup(){
   
-    Serial.println("Orientation Sensor Test"); Serial.println("");
+    SerialBT.println("Orientation Sensor Test"); SerialBT.println("");
     EEPROM.begin(64);
     /* Initialise the sensor */
     if (!bno.begin())
     {
         /* There was a problem detecting the BNO055 ... check your connections */
-        Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+        SerialBT.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
         while (1);
     }
 
@@ -81,27 +81,27 @@ void compass_setup(){
 
 
     bno.getSensor(&sensor);
-    Serial.println("Connected Sensors ID: ");
-    Serial.println(sensor.sensor_id);
-    Serial.println("Data Found in EEPROM: ");
-    Serial.println(bnoID);
+    SerialBT.println("Connected Sensors ID: ");
+    SerialBT.println(sensor.sensor_id);
+    SerialBT.println("Data Found in EEPROM: ");
+    SerialBT.println(bnoID);
     delay(2000);
     if (bnoID != sensor.sensor_id)
     {
-        Serial.println("\nNo Calibration Data for this sensor exists in EEPROM");
+        SerialBT.println("\nNo Calibration Data for this sensor exists in EEPROM");
         delay(500);
     }
     else
     {
-        Serial.println("\nFound Calibration for this sensor in EEPROM.");
+        SerialBT.println("\nFound Calibration for this sensor in EEPROM.");
         eeAddress += sizeof(long);
         EEPROM.get(eeAddress, calibrationData);
         displaySensorOffsets(calibrationData);
 
-        Serial.println("\n\nRestoring Calibration data to the BNO055...");
+        SerialBT.println("\n\nRestoring Calibration data to the BNO055...");
         bno.setSensorOffsets(calibrationData);
 
-        Serial.println("\n\nCalibration data loaded into BNO055");
+        SerialBT.println("\n\nCalibration data loaded into BNO055");
         foundCalib = false;
         
     }
@@ -115,7 +115,7 @@ void compass_setup(){
     bno.getEvent(&event);
     /* always recal the mag as It goes out of calibration very often */
     if (foundCalib){
-        Serial.println("Move sensor slightly to calibrate magnetometers");
+        SerialBT.println("Move sensor slightly to calibrate magnetometers");
         while (!bno.isFullyCalibrated())
         {
             bno.getEvent(&event);
@@ -125,36 +125,36 @@ void compass_setup(){
     }
     else
     {
-        Serial.println("Please Calibrate Sensor: ");
+        SerialBT.println("Please Calibrate Sensor: ");
         while (!bno.isFullyCalibrated())
         {
             bno.getEvent(&event);
 
-            Serial.print("X: ");
-            Serial.print(event.orientation.x, 4);
-            Serial.print("\tY: ");
-            Serial.print(event.orientation.y, 4);
-            Serial.print("\tZ: ");
-            Serial.print(event.orientation.z, 4);
+            SerialBT.print("X: ");
+            SerialBT.print(event.orientation.x, 4);
+            SerialBT.print("\tY: ");
+            SerialBT.print(event.orientation.y, 4);
+            SerialBT.print("\tZ: ");
+            SerialBT.print(event.orientation.z, 4);
 
             /* Optional: Display calibration status */
             displayCalStatus();
 
             /* New line for the next sample */
-            Serial.println("");
+            SerialBT.println("");
 
             /* Wait the specified delay before requesting new data */
             delay(BNO055_SAMPLERATE_DELAY_MS);
         }
     }
 
-    Serial.println("\nFully calibrated!");
-    Serial.println("--------------------------------");
-    Serial.println("Calibration Results: ");
+    SerialBT.println("\nFully calibrated!");
+    SerialBT.println("--------------------------------");
+    SerialBT.println("Calibration Results: ");
     adafruit_bno055_offsets_t newCalib;
     bno.getSensorOffsets(newCalib);
 
-    Serial.println("\n\nStoring calibration data to EEPROM...");
+    SerialBT.println("\n\nStoring calibration data to EEPROM...");
 
     eeAddress = 1;
     bno.getSensor(&sensor);
@@ -167,7 +167,7 @@ void compass_setup(){
     EEPROM.commit();
     Serial.println("Data stored to EEPROM.");
 
-    Serial.println("\n--------------------------------\n");
+    SerialBT.println("\n--------------------------------\n");
     delay(500);
 }
 

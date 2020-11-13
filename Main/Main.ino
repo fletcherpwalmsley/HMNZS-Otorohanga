@@ -28,18 +28,21 @@ TaskHandle_t Task2;
 //////////////////////////////////////////////////
 // Inculdes for the other code headers
 //////////////////////////////////////////////////
+#include "BluetoothSerial.h"
+BluetoothSerial SerialBT;
 
 #include "setup_decs.h"
 #include "gps.h"
 #include "compass.h"
 #include "sd_code.h"
+#include "servo_and_motor.h"
 #include "communication.h"
 #include "core_0.h"
 #include "core_1.h"
 
 
 void setup() {
-  Serial.begin(115200); 
+  SerialBT.begin("ESP32test"); 
   HC12Serial.begin(HC12Baud, SERIAL_8N1, HC12TXPin, HC12RXPin);
   delay(2000);
   //create a task that will be executed in the Task1code() function, with priority 1 and executed on core 0

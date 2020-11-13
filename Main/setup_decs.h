@@ -27,10 +27,6 @@ Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 int current_heading = 0;
 
 
-//Core Synchronization Related
-int core_0_setup_done = 0; 
-int core_1_setup_done = 0; 
-
 
 //SD Card Related
 #include "FS.h"
@@ -48,3 +44,23 @@ bool file_end = false;
 HardwareSerial HC12Serial(1);
 static const uint16_t HC12Baud = 1200;
 static const int HC12RXPin = 2, HC12TXPin = 15;
+
+
+//PID and Servo setup
+#include <AutoPID.h>
+#include <Servo.h>
+Servo myservo;
+static const int servoPin = 4;
+int currentServoPos = 90;
+
+#define OUTPUT_MIN -55
+#define OUTPUT_MAX 55
+#define KP 0.5
+#define KI 0.0005
+#define KD 0.1
+
+double currentPoint, setPoint = 0, outputVal;
+
+//PID input error vars
+double error;
+AutoPID myPID(&currentPoint, &setPoint, &outputVal, OUTPUT_MIN, OUTPUT_MAX, KP, KI, KD);

@@ -9,11 +9,11 @@ void display_data(){
   HC12Serial.print(gps.speed.kmph(), 2);
   HC12Serial.print(F(","));
   HC12Serial.println(current_heading);
-  Serial.print("Distance to Node(m): ");
-  Serial.println(distanceTo);
-  Serial.print("Course required: ");
-  Serial.println(courseTo);
-  Serial.print("Current Heading: ");
-  Serial.println(current_heading);
-  Serial.print("\n\n");
+  SerialBT.print("Distance to Node(m): ");
+  SerialBT.println(distanceTo);
+  SerialBT.print("Course required: ");
+  SerialBT.println(courseTo);
+  SerialBT.print("Current Heading: ");
+  SerialBT.println(current_heading);
+  SerialBT.print("\n\n");
 }

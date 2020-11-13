@@ -30,7 +30,7 @@ void readFile(fs::FS &fs, const char * path){
                
           }
     }
-    Serial.println("The file is at its end");
+    SerialBT.println("The file is at its end");
     file_end = true;
     file.close();
 }
