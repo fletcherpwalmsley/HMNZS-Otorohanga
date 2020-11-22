@@ -9,7 +9,6 @@ void core_1_setup(){
 }
 
 void core_1_loop(){
-
     if (millis() > set_time + SERIAL_DELAY_PERIOD){
       display_data();
       set_time = millis();
@@ -17,5 +16,8 @@ void core_1_loop(){
     if (at_destination()){
       readFile(SD, "/map.txt");
     } 
-  
+
+    if((millis() > (set_time + RECEIVE_PERIOD_START)) && (millis() > (set_time + RECEIVE_PERIOD_START))){
+      receive_commands();
+    }
 }

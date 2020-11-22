@@ -37,7 +37,8 @@ void controls_setup(){
 
 //Motor
 void set_speed(){
-  if ((file_end) || (distanceTo > 100000)){
+  //if ((motor_enable==0 ) || (distanceTo > 100000)){
+  if (motor_enable==0 ){
     digitalWrite(26, LOW);
   }else{
     digitalWrite(26, HIGH); 

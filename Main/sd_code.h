@@ -31,6 +31,6 @@ void readFile(fs::FS &fs, const char * path){
           }
     }
     SerialBT.println("The file is at its end");
-    file_end = true;
+    motor_enable = false;
     file.close();
 }

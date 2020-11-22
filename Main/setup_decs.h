@@ -9,7 +9,7 @@ double courseTo;
 
 
 //Paced loop varables
-#define SERIAL_DELAY_PERIOD (1500)
+#define SERIAL_DELAY_PERIOD (3000)
 unsigned long set_time = 0;
 unsigned long set_time_BNO055 = 0;
 
@@ -37,7 +37,7 @@ uint16_t data_index = 0;
 String inputdata;
 float lat_data;
 float long_data;
-bool file_end = false;
+bool motor_enable = false;
 
 
 //HC-12 Setup
@@ -64,3 +64,9 @@ double currentPoint, setPoint = 0, outputVal;
 //PID input error vars
 double error;
 AutoPID myPID(&currentPoint, &setPoint, &outputVal, OUTPUT_MIN, OUTPUT_MAX, KP, KI, KD);
+
+
+//Data input 
+int readData;
+#define RECEIVE_PERIOD_START (100)
+#define RECEIVE_PERIOD_STOP (2900)

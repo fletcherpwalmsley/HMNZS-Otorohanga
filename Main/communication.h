@@ -1,6 +1,4 @@
 void display_data(){
-
-
 // Code to output to the HC12 - Send in a way so that it can be read by the Python host code 
   HC12Serial.print(gps.location.lat(), 6);
   HC12Serial.print(F(","));
@@ -15,5 +13,21 @@ void display_data(){
   SerialBT.println(courseTo);
   SerialBT.print("Current Heading: ");
   SerialBT.println(current_heading);
-  SerialBT.print("\n\n");
+}
+
+void receive_commands(){
+   // HC12Serial.flush();
+    while (HC12Serial.available()>0) {
+      SerialBT.println("Data Received");
+      readData = HC12Serial.read();
+      SerialBT.println(readData);
+      if (readData == 49){
+        motor_enable = 1;
+        SerialBT.println("Motor On");
+      }
+      if (readData == 48){
+        motor_enable = 0;
+        SerialBT.println("Motor Off");
+      }
+    }
 }
