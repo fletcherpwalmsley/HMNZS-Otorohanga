@@ -13,6 +13,23 @@ void display_data(){
   SerialBT.println(courseTo);
   SerialBT.print("Current Heading: ");
   SerialBT.println(current_heading);
+
+ //Show IMU Status
+  uint8_t system, gyro, accel, mag;
+  system = gyro = accel = mag = 0;
+  bno.getCalibration(&system, &gyro, &accel, &mag);
+  SerialBT.print("Sys:");
+  SerialBT.print(system, DEC);
+  SerialBT.print(" G:");
+  SerialBT.print(gyro, DEC);
+  SerialBT.print(" A:");
+  SerialBT.print(accel, DEC);
+  SerialBT.print(" M:");
+  SerialBT.println(mag , DEC);
+  SerialBT.println();
+
+
+ 
 }
 
 void receive_commands(){

@@ -1,0 +1,33 @@
+
+            <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+            <Placemark>
+                <name>kph = 3.94</name>
+                <description>Current Location of the HMNZS Otorohanga, Update #9</description>
+                    <LookAt>
+                        <longitude>172.572019</longitude>
+                        <latitude>-43.528036</latitude>
+                        <range>200</range>
+                        <tilt>0</tilt>
+                        <heading>0</heading>
+                    </LookAt>
+                    <Style id="track_n">
+                        <IconStyle>
+                            <scale>1</scale>
+                            <heading>149
+</heading>
+                            <Icon>
+                                <href>http://maps.google.com/mapfiles/kml/shapes/track.png</href>
+                            </Icon>
+                        </IconStyle>
+                        <LabelStyle>
+                            <scale>0.65</scale>
+                        </LabelStyle>
+                        <Orientation>
+                            <heading>90</heading>
+                        </Orientation> 
+                    </Style>
+                    <Point>
+                        <coordinates>172.572019,-43.528036,0</coordinates>
+                    </Point>
+            </Placemark>
+            </kml>

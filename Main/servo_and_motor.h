@@ -19,19 +19,22 @@ void move_servo(){
 
 void controls_setup(){
   //Motor Output Setup
-  pinMode(26, OUTPUT);
-  myPID.setBangBang(100);
-  //set PID update interval to 30ms
-  myPID.setTimeStep(10);
-  
-  //Servo Setup      
+    //Servo Setup      
   myservo.attach(
         servoPin, 
         Servo::CHANNEL_NOT_ATTACHED, 
         0,
         180
     );
-  myservo.write(currentServoPos);
+
+  myservo.write(90);
+  delay(5000);
+  pinMode(26, OUTPUT);
+  myPID.setBangBang(100);
+  //set PID update interval to 30ms
+  myPID.setTimeStep(10);
+  
+
 }
 
 

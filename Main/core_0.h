@@ -2,8 +2,10 @@
 
 void core_0_setup(){
   GPSSerial.begin(GPSBaud, SERIAL_8N1, TXPin, RXPin);
-  compass_setup();
   controls_setup();
+
+  compass_setup();
+
 }
 
 
