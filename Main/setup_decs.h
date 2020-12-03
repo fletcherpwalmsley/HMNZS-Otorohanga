@@ -14,6 +14,7 @@ unsigned long set_time = 0;
 unsigned long set_time_BNO055 = 0;
 
 
+
 //Compass Related
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
@@ -22,6 +23,7 @@ unsigned long set_time_BNO055 = 0;
 #include <EEPROM.h>
 /* Set the delay between fresh samples */
 #define BNO055_SAMPLERATE_DELAY_MS (100)
+#define BNO055_SAMPLERATE_DELAY_MS_STARTUP (500)
 float dec_angle = 20.72;
 Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 int current_heading = 0;

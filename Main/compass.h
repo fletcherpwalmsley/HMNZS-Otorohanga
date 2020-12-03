@@ -86,6 +86,7 @@ void compass_setup(){
     SerialBT.println("Data Found in EEPROM: ");
     SerialBT.println(bnoID);
     delay(2000);
+    /*
     if (bnoID != sensor.sensor_id)
     {
         SerialBT.println("\nNo Calibration Data for this sensor exists in EEPROM");
@@ -105,7 +106,7 @@ void compass_setup(){
         foundCalib = false;
         
     }
-
+  */
     delay(1000);
 
    /* Crystal must be configured AFTER loading calibration data into BNO055. */
@@ -120,7 +121,7 @@ void compass_setup(){
         {
             bno.getEvent(&event);
             displayCalStatus();
-            delay(BNO055_SAMPLERATE_DELAY_MS);
+            delay(1000);
         }
     }
     else
@@ -144,7 +145,7 @@ void compass_setup(){
             SerialBT.println("");
 
             /* Wait the specified delay before requesting new data */
-            delay(BNO055_SAMPLERATE_DELAY_MS);
+            delay(BNO055_SAMPLERATE_DELAY_MS_STARTUP);
         }
     }
 
