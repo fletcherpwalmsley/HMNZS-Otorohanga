@@ -34,12 +34,13 @@ void controls_setup(){
   //set PID update interval to 30ms
   myPID.setTimeStep(10);
   
+
 }
 
 
 //Motor
 void set_speed(){
-  //if ((motor_enable==0) || (distanceTo > 100000)){
+  //if ((motor_enable==0 ) || (distanceTo > 100000)){
   if (motor_enable==0 ){
     digitalWrite(26, LOW);
   }else{

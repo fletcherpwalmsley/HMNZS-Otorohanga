@@ -1,7 +1,7 @@
 
 bool at_destination(){
   if(distanceTo < 2.0){
-    HC12Serial.println("Destination Reached, Enter new location");
+    Serial.println("Destination Reached, Enter new location");
     return true;
 }return false;
   

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>LongPathLake.kml</name>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark>
+		<name>LongPathLake</name>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				175.6584295701918,-38.16411725891452,0 175.6584086680459,-38.16396935134244,0 175.6587389271378,-38.16413862330081,0 175.658895428793,-38.16393538638386,0 175.6588219016593,-38.16374048563114,0 175.6587777853019,-38.16357861894068,0 175.6589353399788,-38.16345804426228,0 175.6592315445258,-38.16358687582066,0 175.6594879443932,-38.16401547647043,0 175.6598828891142,-38.16425992464993,0 175.6601623000843,-38.16455520466167,0 175.6602133256853,-38.16489748240691,0 175.6599892408644,-38.16507009339396,0 175.6603274991951,-38.16524687448769,0 175.6605182269765,-38.16494778741684,0 175.6600491013946,-38.16444695874983,0 175.65959530118,-38.16407578432045,0 175.6589524682581,-38.16392548355276,0 175.6588012133673,-38.16404275471382,0 
+			</coordinates>
+		</LineString>
+	</Placemark>
+</Document>
+</kml>

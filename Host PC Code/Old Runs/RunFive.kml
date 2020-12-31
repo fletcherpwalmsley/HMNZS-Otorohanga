@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>RunFive.kml</name>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>RunFive</name>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				175.6582203207378,-38.16322204939893,0 175.6583327741834,-38.16332406884826,0 175.6585338927209,-38.16326370727154,0 175.6586885158712,-38.16324925419188,0 175.6588928785792,-38.16332236739122,0 175.6588863899441,-38.16318804191433,0 175.6587220349973,-38.16312173002462,0 175.6587771795372,-38.16298230334225,0 175.6586506698267,-38.16290748943328,0 175.6584290475408,-38.16291022363036,0 175.6584625669326,-38.16277844865406,0 175.6586280019983,-38.16278695007863,0 175.6588020875507,-38.16285666281006,0 175.6582960504547,-38.16286261452033,0 175.6583468705315,-38.16306920376401,0 
+			</coordinates>
+		</LineString>
+	</Placemark>
+</Document>
+</kml>

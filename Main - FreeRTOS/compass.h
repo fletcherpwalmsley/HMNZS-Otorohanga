@@ -161,11 +161,11 @@ void compass_setup(){
     bno.getSensor(&sensor);
     bnoID = sensor.sensor_id;
 
-   // EEPROM.put(eeAddress, bnoID);
+    EEPROM.put(eeAddress, bnoID);
 
-  //  eeAddress += sizeof(long);
-  //  EEPROM.put(eeAddress, newCalib);
-   // EEPROM.commit();
+    eeAddress += sizeof(long);
+    EEPROM.put(eeAddress, newCalib);
+    EEPROM.commit();
     Serial.println("Data stored to EEPROM.");
 
     SerialBT.println("\n--------------------------------\n");

@@ -9,7 +9,7 @@ double courseTo;
 
 
 //Paced loop varables
-#define SERIAL_DELAY_PERIOD (2000)
+#define SERIAL_DELAY_PERIOD (3000)
 unsigned long set_time = 0;
 unsigned long set_time_BNO055 = 0;
 
@@ -55,8 +55,8 @@ Servo myservo;
 static const int servoPin = 4;
 int currentServoPos = 90;
 
-#define OUTPUT_MIN -35
-#define OUTPUT_MAX 35
+#define OUTPUT_MIN -55
+#define OUTPUT_MAX 55
 #define KP 0.5
 #define KI 0.0005
 #define KD 0.1
@@ -71,8 +71,4 @@ AutoPID myPID(&currentPoint, &setPoint, &outputVal, OUTPUT_MIN, OUTPUT_MAX, KP, 
 //Data input 
 int readData;
 #define RECEIVE_PERIOD_START (100)
-#define RECEIVE_PERIOD_STOP (1900)
-
-//SD Print 
-String latSDPrint="";
-String lngSDPrint="";
+#define RECEIVE_PERIOD_STOP (2900)

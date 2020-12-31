@@ -1,9 +1,9 @@
 void readFile(fs::FS &fs, const char * path){
-    HC12Serial.printf("Reading file: %s\n", path);
+    Serial.printf("Reading file: %s\n", path);
 
     File file = fs.open(path);
     if(!file){
-        HC12Serial.println("Failed to open file for reading");
+        Serial.println("Failed to open file for reading");
         return;
     }
     
@@ -27,9 +27,10 @@ void readFile(fs::FS &fs, const char * path){
               long_data = atof(strtokIndex);
               return;
             }
+               
           }
     }
-    HC12Serial.println("The file is at its end");
+    SerialBT.println("The file is at its end");
+    motor_enable = false;
     file.close();
-
 }
