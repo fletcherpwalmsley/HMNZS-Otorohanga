@@ -19,7 +19,7 @@ print("To to force the craft to return home, press 'h'\n")
 time.sleep(1)
 print("Connection to the HMNZS Otorohanga will now be made\n")
 
-serialcomm = serial.Serial('COM5', 1200)
+serialcomm = serial.Serial('COM9', 1200)
 serialcomm.timeout = 1
 
 print("Connection Successful!")
