@@ -6,13 +6,14 @@
 #include <EEPROM.h> 
 
 /* Set the delay between fresh samples */
-#define BNO055_SAMPLERATE_DELAY_MS (200)
+#define BNO055_SAMPLERATE_DELAY_MS (20)
 #define BNO055_SAMPLERATE_DELAY_MS_STARTUP (500)
 float dec_angle = 0; //20.72 <<-- Correct Det (might need to revisit this number, as zero seems to give better results)
 Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 
+int latest_heading = 0;
 
-int update_compass(){
+void update_compass(){
   
     sensors_event_t event;
     bno.getEvent(&event);
@@ -22,7 +23,7 @@ int update_compass(){
     }else{
       event.orientation.x = (event.orientation.x + dec_angle - 360);
     }
-    return round(event.orientation.x);
+    latest_heading = round(event.orientation.x);
 }
 
 
@@ -34,6 +35,7 @@ void data_send(bool state, bool setup_method){
    bno.getCalibration(&system, &gyro, &accel, &mag);
 
   if (state == 1){
+    Serial.print('<');
     Serial.print(state);
     Serial.print(',');
     Serial.print(setup_method);
@@ -45,11 +47,12 @@ void data_send(bool state, bool setup_method){
     Serial.print(accel);
     Serial.print(',');
     Serial.print(mag);
-    Serial.println();
+    Serial.print('>');
   }else{
+    Serial.print('<');
     Serial.print(state);
     Serial.print(',');
-    Serial.print(update_compass());
+    Serial.print(latest_heading);
     Serial.print(',');
     Serial.print(system);
     Serial.print(',');
@@ -58,7 +61,7 @@ void data_send(bool state, bool setup_method){
     Serial.print(accel);
     Serial.print(',');
     Serial.print(mag);
-    Serial.println();
+    Serial.println('>');
   }  
 }
 
@@ -112,14 +115,35 @@ void compass_setup(){
     delay(500);
 }
 
+void send_data(){
+  // To make sure that the esp32 input buffer isn't being spammed and
+  // to make sure only the most uptoday data is sent. The Nano will wait 
+  // for the esp32 to request an update.
+
+  if (Serial.available() > 0){
+      bool inval;
+      inval = Serial.read();
+      if (inval == 1){
+          data_send(0, 2);
+          //Clear the output buffer
+          while (Serial.available() > 0) {
+               Serial.read();
+          }  
+      }
+  }
+}
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  pinMode(13, OUTPUT); //Turn the LED on during calibration
+  digitalWrite(13, HIGH);
   compass_setup();
+  digitalWrite(13, LOW);
 }
 
 
 void loop() {
-  data_send(0, 2);
+  send_data();
+  update_compass();
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
